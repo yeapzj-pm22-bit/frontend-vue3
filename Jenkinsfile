@@ -5,7 +5,7 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 script {
-                    // Production deployment (CHECK FOR BOTH main AND master)
+                    // Production deployment
                     if (env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master') {
                         node('production-agent') {
                             stage('Checkout') {
@@ -24,7 +24,7 @@ pipeline {
                                 echo 'Deploying to Production Server...'
                                 echo 'Build files are in ./dist directory'
                                 // Add your deployment commands here
-                                // Example: bat 'xcopy /E /Y /I .\\dist C:\\inetpub\\wwwroot\\frontend-prod\\'
+                                // Example: bat 'xcopy /E /Y .\\dist C:\\inetpub\\wwwroot\\frontend-prod\\'
                             }
                         }
                     }
@@ -47,7 +47,7 @@ pipeline {
                                 echo 'Deploying to Test Server...'
                                 echo 'Build files are in ./dist directory'
                                 // Add your deployment commands here
-                                // Example: bat 'xcopy /E /Y /I .\\dist C:\\inetpub\\wwwroot\\frontend-test\\'
+                                // Example: bat 'xcopy /E /Y .\\dist C:\\inetpub\\wwwroot\\frontend-test\\'
                             }
                         }
                     }
